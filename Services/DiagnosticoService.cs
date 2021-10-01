@@ -1,11 +1,9 @@
 using CitasMedicas.Models;
-using CitasMedicas.Models.DTO;
 using CitasMedicas.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace CitasMedicas.Services
 {
@@ -37,10 +35,8 @@ namespace CitasMedicas.Services
                 return null;
 
             Cita cita = _context.Citas.Find(diagnostico.Id);
-            cita.Diagnostico = diagnostico;
-            
+                        
             _context.Diagnosticos.Add(diagnostico);
-            _context.Entry(cita).State = EntityState.Modified;
             _context.SaveChanges();
 
             return diagnostico;

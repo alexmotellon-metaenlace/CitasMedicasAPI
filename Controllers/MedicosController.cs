@@ -112,7 +112,7 @@ namespace CitasMedicas.Controllers
             var pacientes = _medicoService.ReadPacientesMedico(id);
 
             if (pacientes == null) 
-                return Ok(new MessageDTO(404, "No se han encontrado pacientes asociados al médico con ID "+id));
+                return Ok(new MessageDTO(404, "No se han encontrado pacientes para el médico con ID "+id));
             
             foreach (Paciente p in pacientes)
                 pacientesDTO.Add(_mapper.Map<PacienteDTO>(p));
@@ -128,7 +128,7 @@ namespace CitasMedicas.Controllers
             var citas = _medicoService.ReadCitasMedico(id);
             
             if (citas == null) 
-                return Ok(new MessageDTO(404, "No se han encontrado citas asociadas al médico con ID "+id));
+                return Ok(new MessageDTO(404, "No se han encontrado citas para el médico con ID "+id));
             
             foreach (Cita c in citas)
                 citasDTO.Add(_mapper.Map<CitaDTO>(c));

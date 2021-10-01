@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using CitasMedicas.Models;
 using CitasMedicas.Data;
 using AutoMapper;
@@ -58,11 +54,12 @@ namespace CitasMedicas.Controllers
         [HttpPost]
         public ActionResult<Cita> AddCita(CitaDTO cita)
         {
-            if (_citaService.CreateCita(_mapper.Map<Cita>(cita), cita.Medico, cita.Paciente) == null)
-                return Ok(new MessageDTO(404, "La cita con ID "+cita.Id+" ya existe o no se puede crear"));
+            Cita cita_created = _citaService.CreateCita(_mapper.Map<Cita>(cita), cita.Medico, cita.Paciente);
+            if (cita_created == null)
+                return Ok(new MessageDTO(404, "La cita con ID "+cita_created.Id+" ya existe o no se puede crear"));
             
             else
-                return Ok(new MessageDTO(200, "Cita con ID "+cita.Id+" creada correctamente"));
+                return Ok(new MessageDTO(200, "Cita con ID "+cita_created.Id+" creada correctamente"));
             
         }
 
@@ -70,7 +67,8 @@ namespace CitasMedicas.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateCita(int id, Cita cita)
         {
-            if (_citaService.UpdateCita(id, cita) == null)
+            Cita cita_updated = _citaService.UpdateCita(id, cita);
+            if (cita_updated == null)
                 return Ok(new MessageDTO(404, "La cita con ID "+id+" no se encuentra o no se puede actualizar"));
             
 

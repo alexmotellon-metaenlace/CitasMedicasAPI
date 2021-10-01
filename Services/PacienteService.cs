@@ -118,7 +118,6 @@ namespace CitasMedicas.Services
                 .Where(c => c.Paciente.Id == id)
                 .Include("Paciente")
                 .Include("Medico")
-                .Include("Diagnostico")
                 .ToList();
 
             if (citas.Count()<1)

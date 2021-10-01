@@ -1,11 +1,9 @@
 using CitasMedicas.Models;
-using CitasMedicas.Models.DTO;
 using CitasMedicas.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace CitasMedicas.Services
 {
@@ -120,7 +118,6 @@ namespace CitasMedicas.Services
                 .Where(c => c.Medico.Id == id)
                 .Include("Paciente")
                 .Include("Medico")
-                .Include("Diagnostico")
                 .ToList();
 
             if (citas.Count()<1)

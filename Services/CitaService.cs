@@ -1,11 +1,9 @@
 using CitasMedicas.Models;
-using CitasMedicas.Models.DTO;
 using CitasMedicas.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace CitasMedicas.Services
 {
@@ -21,13 +19,13 @@ namespace CitasMedicas.Services
         // GET: ReadAllCitas
         public IEnumerable<Cita> ReadAllCitas()
         {
-            return _context.Citas.Include(c => c.Diagnostico).Include(c => c.Medico).Include(c => c.Paciente).ToList();
+            return _context.Citas.Include(c => c.Medico).Include(c => c.Paciente).ToList();
         }
 
         // GET: ReadCita
         public Cita ReadCita(long id)
         {
-            return _context.Citas.Where(c => c.Id == id).Include(c => c.Diagnostico).Include(c => c.Medico).Include(c => c.Paciente).FirstOrDefault();
+            return _context.Citas.Where(c => c.Id == id).Include(c => c.Medico).Include(c => c.Paciente).FirstOrDefault();
         }
 
         // POST: CreateCita
