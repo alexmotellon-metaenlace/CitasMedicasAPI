@@ -61,7 +61,7 @@ namespace CitasMedicas.Controllers
         {
 
             if (_medicoService.CreateMedico(medico) == null)
-                return Ok(new MessageDTO(412, "El médico con ID "+medico.Id+" ya existe"));
+                return Ok(new MessageDTO(404, "Ya existe un médico con ID "+medico.Id+", NickUsuario "+ medico.NickUsuario+", NumColegiado "+ medico.NumColegiado));
             
             else
                 return Ok(new MessageDTO(200, "Médico con ID "+medico.Id+" creado correctamente"));

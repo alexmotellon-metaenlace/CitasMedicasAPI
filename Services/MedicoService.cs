@@ -31,8 +31,8 @@ namespace CitasMedicas.Services
         // POST: CreateMedico 
         public Medico CreateMedico(Medico medico)
         {
-            if (_context.Medicos.Any(p => p.NickUsuario == medico.NickUsuario) && _context.Medicos.Any(p => p.Id == medico.Id)
-                && _context.Medicos.Any(p => p.NumColegiado == medico.NumColegiado))
+            if (_context.Medicos.Any(m => m.NickUsuario == medico.NickUsuario) || _context.Medicos.Any(m => m.Id == medico.Id)
+                || _context.Medicos.Any(m => m.NumColegiado == medico.NumColegiado))
                 return null;
                 
             _context.Medicos.Add(medico);
@@ -57,7 +57,7 @@ namespace CitasMedicas.Services
             catch (DbUpdateConcurrencyException)
             {
                 // Medico does not exists
-                if (! _context.Medicos.Any(e => e.Id == id))
+                if (! _context.Medicos.Any(m => m.Id == id))
                     return null;
                 
                 else
@@ -84,8 +84,8 @@ namespace CitasMedicas.Services
         // POST: LoginMedico
         public Medico LoginMedico(string username, string password)
         {
-            if (_context.Medicos.Any(e => e.NickUsuario == username && e.Clave == password))
-                return _context.Medicos.Where(e => e.NickUsuario == username).FirstOrDefault();
+            if (_context.Medicos.Any(m => m.NickUsuario == username && m.Clave == password))
+                return _context.Medicos.Where(m => m.NickUsuario == username).FirstOrDefault();
             
             return null;
         }

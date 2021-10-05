@@ -31,7 +31,7 @@ namespace CitasMedicas.Services
         public Usuario CreateUsuario(Usuario usuario)
         {
  
-            if (_context.Usuarios.Any(e => e.NickUsuario == usuario.NickUsuario))
+            if (_context.Usuarios.Any(u => u.NickUsuario == usuario.NickUsuario || _context.Usuarios.Any(u => u.Id == usuario.Id)))
                 return null;
 
             _context.Usuarios.Add(usuario);
@@ -56,7 +56,7 @@ namespace CitasMedicas.Services
             catch (DbUpdateConcurrencyException)
             {
                 // User does not exists
-                if (! _context.Usuarios.Any(e => e.Id == id))
+                if (! _context.Usuarios.Any(u => u.Id == id))
                     return null;
                 
                 else

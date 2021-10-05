@@ -54,7 +54,7 @@ namespace CitasMedicas.Controllers
         {
 
             if (_usuarioService.CreateUsuario(usuario) == null)
-                return Ok(new MessageDTO(404, "El usuario con ID "+usuario.Id+" ya existe"));
+                return Ok(new MessageDTO(404, "Ya existe un usuario con ID "+usuario.Id+" o NickUsuario "+ usuario.NickUsuario));
             
             return Ok(new MessageDTO(200, "Usuario con ID "+usuario.Id+" creado correctamente"));
              

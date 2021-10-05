@@ -33,8 +33,8 @@ namespace CitasMedicas.Services
         // POST: CreatePaciente 
         public Paciente CreatePaciente(Paciente paciente)
         {
-            if (_context.Pacientes.Any(p => p.NickUsuario == paciente.NickUsuario) && _context.Pacientes.Any(p => p.Id == paciente.Id)
-                && _context.Pacientes.Any(p => p.Nss == paciente.Nss))
+            if (_context.Pacientes.Any(p => p.NickUsuario == paciente.NickUsuario) ||  _context.Pacientes.Any(p => p.Id == paciente.Id)
+                || _context.Pacientes.Any(p => p.Nss == paciente.Nss))
                 return null;
 
             _context.Pacientes.Add(paciente);
@@ -58,7 +58,7 @@ namespace CitasMedicas.Services
             catch (DbUpdateConcurrencyException)
             {
                 // User does not exists
-                if (! _context.Pacientes.Any(e => e.Id == id))
+                if (! _context.Pacientes.Any(p => p.Id == id))
                     return null;
                 else
                     throw;
@@ -83,8 +83,8 @@ namespace CitasMedicas.Services
         // POST: LoginPaciente
         public Paciente LoginPaciente(string username, string password)
         {
-            if(_context.Pacientes.Any(e => e.NickUsuario == username && e.Clave == password))
-                return _context.Pacientes.Where(e => e.NickUsuario == username).FirstOrDefault();
+            if(_context.Pacientes.Any(p => p.NickUsuario == username && p.Clave == password))
+                return _context.Pacientes.Where(p => p.NickUsuario == username).FirstOrDefault();
             
             return null;
         }

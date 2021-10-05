@@ -66,7 +66,7 @@ namespace CitasMedicas.Services
             catch (DbUpdateConcurrencyException)
             {
                 // Cita does not exists
-                if (! _context.Citas.Any(e => e.Id == id))
+                if (! _context.Citas.Any(c => c.Id == id))
                     return null;
                 
                 else

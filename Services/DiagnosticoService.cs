@@ -58,7 +58,7 @@ namespace CitasMedicas.Services
             catch (DbUpdateConcurrencyException)
             {
                 // Diagnostico does not exists
-                if (! _context.Diagnosticos.Any(e => e.Id == id))
+                if (! _context.Diagnosticos.Any(d => d.Id == id))
                     return null;
                 
                 else

@@ -54,7 +54,7 @@ namespace CitasMedicas.Controllers
         public ActionResult<Paciente> AddPaciente(Paciente paciente)
         {
             if (_pacienteService.CreatePaciente(paciente) == null)
-                return Ok(new MessageDTO(404, "El paciente con ID "+paciente.Id+" ya existe"));
+                return Ok(new MessageDTO(404, "Ya existe un médico con ID "+paciente.Id+", NickUsuario "+ paciente.NickUsuario+", Nss "+ paciente.Nss));
             
             else
                 return Ok(new MessageDTO(200, "Paciente con ID "+paciente.Id+ " creado correctamente"));
