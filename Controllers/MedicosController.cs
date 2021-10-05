@@ -73,9 +73,9 @@ namespace CitasMedicas.Controllers
         public IActionResult PutMedico(int id, Medico medico)
         {
             if (_medicoService.UpdateMedico(id, medico) == null)
-                return Ok(new MessageDTO(404, "El medico con ID "+id+" no se encuentra o no se puede actualizar"));
+                return Ok(new MessageDTO(404, "El médico con ID "+id+" no se encuentra o no se puede actualizar"));
 
-            return Ok(new MessageDTO(200, "El medico con ID "+id+" se ha actualizado"));
+            return Ok(new MessageDTO(200, "El médico con ID "+id+" se ha actualizado"));
         }
 
         // DELETE: api/medicos/5

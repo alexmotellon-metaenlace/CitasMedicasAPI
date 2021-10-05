@@ -2,11 +2,8 @@ using AutoMapper;
 using CitasMedicas.Models.DTO;
 using CitasMedicas.Models;
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace CitasMedicas.Data
 {

@@ -16,13 +16,13 @@ namespace CitasMedicas.Services
             _context = context;
         }
         
-        // GET: GetDiagnosticos 
+        // GET: ReadAllDiagnosticos 
         public IEnumerable<Diagnostico> ReadAllDiagnosticos()
         {
             return _context.Diagnosticos.ToList();
         }
 
-        // GET: GetDiagnostico 
+        // GET: ReadDiagnostico 
         public Diagnostico ReadDiagnostico(long id)
         {
             return _context.Diagnosticos.Find(id);
@@ -57,7 +57,7 @@ namespace CitasMedicas.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                // Medico does not exists
+                // Diagnostico does not exists
                 if (! _context.Diagnosticos.Any(e => e.Id == id))
                     return null;
                 

@@ -84,7 +84,7 @@ namespace CitasMedicas.Controllers
                 return Ok(new MessageDTO(404, "El paciente con ID "+id+" no existe")); 
         }
 
-        // POST: api/pacientes/Login
+        // POST: api/pacientes/login
         [HttpPost("login")]
         public ActionResult<Paciente> Login(LoginDTO login)
         {
